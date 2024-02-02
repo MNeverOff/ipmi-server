@@ -58,16 +58,35 @@ If that hasn't happened then all you need is to edit the contents of `custom_com
 
 ### How to build it yourself
 
-If you want to build this container yourself feel free to use
+If you want to build this container yourself feel free to use the snippet below, replace the -tag definitions as you please. For buildx reference look [here](https://www.docker.com/blog/multi-arch-build-and-images-the-simple-way/).
 
 ``` bash
-docker build \                         
+docker buildx build \
+  --push \
+  --platform linux/386, linux/amd64, linux/arm/v6,linux/arm/v7, linux/arm64 \
   --build-arg BUILD_ARCH=amd64 \
   --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') \
   --build-arg BUILD_REF=$(git rev-parse --short HEAD) \
   --build-arg BUILD_VERSION=1.0.0 \
-  --build-arg BUILD_REPOSITORY="MNeverOff/ipmi-server" \
-  -t ipmi-server:1.0.0 .
+  --build-arg BUILD_REPOSITORY="mneveroff/ipmi-server" \
+  --tag mneveroff/mneveroff:1.0.0 .
+```
+
+To ensure that you can build for multiplatform you need to enable `docker buildx` and create a builder with the platforms you want to build for, use `docker buildx create --use` and `docker buildx inspect --bootstrap` as well as make sure that your docker engine config has reference to buildkit:
+
+``` json
+{
+  "builder": {
+    "gc": {
+      "defaultKeepStorage": "20GB",
+      "enabled": true
+    }
+  },
+  "experimental": false,
+  "features": {
+    "buildkit": true
+  }
+}
 ```
 
 Replace the repository, and `<name>`:`<version>` respectively
