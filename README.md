@@ -65,12 +65,13 @@ If you want to build this container yourself feel free to use the snippet below,
 ``` bash
 docker buildx build \
   --push \
-  --platform linux/386, linux/amd64, linux/arm/v6,linux/arm/v7, linux/arm64 \
+  --platform linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 \
   --build-arg BUILD_ARCH=amd64 \
   --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') \
   --build-arg BUILD_REF=$(git rev-parse --short HEAD) \
   --build-arg BUILD_VERSION=1.0.0 \
   --build-arg BUILD_REPOSITORY="mneveroff/ipmi-server" \
+  --tag mneveroff/mneveroff:latest \
   --tag mneveroff/mneveroff:1.0.0 .
 ```
 
