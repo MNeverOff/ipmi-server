@@ -71,8 +71,8 @@ docker buildx build \
   --build-arg BUILD_REF=$(git rev-parse --short HEAD) \
   --build-arg BUILD_VERSION=1.0.0 \
   --build-arg BUILD_REPOSITORY="mneveroff/ipmi-server" \
-  --tag mneveroff/mneveroff:latest \
-  --tag mneveroff/mneveroff:1.0.0 .
+  --tag mneveroff/ipmi-server:latest \
+  --tag mneveroff/ipmi-server:1.0.0 .
 ```
 
 To ensure that you can build for multiplatform you need to enable `docker buildx` and create a builder with the platforms you want to build for, use `docker buildx create --use` and `docker buildx inspect --bootstrap` as well as make sure that your docker engine config has reference to buildkit:
