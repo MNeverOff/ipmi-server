@@ -6,11 +6,15 @@
 
 This container is a ~~lightweight~~ fully-fledged webserver that allows us to execute [`ipmitool`](https://linux.die.net/man/1/ipmitool) commands and returns a `json` object with some results, courtesy of [@ateodorescu](https://github.com/ateodorescu) and their Home Assistant Add-on, [ipmi-server](home-assistant-addons) and uses their Symphony app and nginx configuration.
 
+The image itself is based on the HomeAssistant Add-on, so contains a fair amount of junk, it's on my to-do to significantly reduce the size of the image whilst keeping the functionality.
+
 ### Applications
 
 This repository is provided for convenience, so people, including myself, can pull it from docker hub and wouldn't have to build it themselves.
 
 It was initially inspired by the [home-assistant-ipmi](https://github.com/ateodorescu/home-assistant-ipmi) by [@ateodorescu](https://github.com/ateodorescu).
+
+> **WARNING** This container's content contains several unpatched CVEs, most notably [CVE-2023-24540⁠](https://scout.docker.com/vulnerabilities/id/CVE-2023-24540?s=golang&n=stdlib&t=golang&vr=%3C1.19.9), [CVE-2023-24538⁠](https://scout.docker.com/vulnerabilities/id/CVE-2023-24538?s=golang&n=stdlib&t=golang&vr=%3C1.19.8) and [CVE-2022-23806⁠](https://scout.docker.com/vulnerabilities/id/CVE-2022-23806?s=golang&n=stdlib&t=golang&vr=%3E=1.17.0-0,%3C1.17.7) for stdlib and [CVE-2023-38545⁠](https://scout.docker.com/vulnerabilities/id/CVE-2023-38545?s=alpine&n=curl&ns=alpine&t=apk&osn=alpine&osv=3.18&vr=%3C8.4.0-r0) for alpine. I can't be bothered with updating the underlying home assistant add-on base image, so please isolate the container well and ensure that it's only accessible via the caddy_net.
 
 ## How to use
 
@@ -39,7 +43,7 @@ networks:
 ```
 
 ``` bash
-# GENERAL
+# .env
 TZ=Europe/London
 DOCKER_MY_NETWORK=caddy_net
 ```
