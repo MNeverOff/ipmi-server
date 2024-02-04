@@ -20,6 +20,8 @@ It was initially inspired by the [home-assistant-ipmi](https://github.com/ateodo
 
 ## How to use
 
+You can find full installation guide in my blog: neveroff.dev/blog/ipmi-control-in-apple-home/
+
 ### Docker Compose
 
 I'm assuming you're using `caddy` as your reverse-proxy, but it's largely irrelevant. 
@@ -52,11 +54,7 @@ DOCKER_MY_NETWORK=caddy_net
 
 ### Integrating it with HomeAssistant
 
-To integrate it with HomeAssistant you can use [home-assistant-ipmi](https://github.com/ateodorescu/home-assistant-ipmi) by [@ateodorescu](https://github.com/ateodorescu). 
-
-There is [a PR](https://github.com/ateodorescu/home-assistant-ipmi/pull/23/commits) with updated version of `home-assistant-ipmi`, if it's accepted then as of version `1.3.0` you'll be able to specify ipmi-server host, set it to `ipmi_server` and your port to `80` in the configuration and it'll be available in HomeAssistant.
-
-If that hasn't happened then all you need is to edit the contents of `custom_components/ipmi/const.py`, replacing the `IPMI_URL = "http://localhost"` with `IPMI_URL = "http://ipmi_server"` (don't omit `http://` as it's crucial). Reload the entire Home Assistant and it should start working (don't forget to still set port to 80).
+To integrate it with HomeAssistant you can use [home-assistant-ipmi](https://github.com/ateodorescu/home-assistant-ipmi) by [@ateodorescu](https://github.com/ateodorescu). As of [1.3.1](https://github.com/ateodorescu/home-assistant-ipmi/releases/tag/v1.3.1) you are be able to specify ipmi-server host, set it to `ipmi_server` and your port to `80` in the configuration and it'll be available in HomeAssistant.
 
 ### How to build it yourself
 
