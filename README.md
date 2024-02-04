@@ -20,7 +20,7 @@ It was initially inspired by the [home-assistant-ipmi](https://github.com/ateodo
 
 ## How to use
 
-You can find full installation guide in my blog: neveroff.dev/blog/ipmi-control-in-apple-home/
+You can find full installation guide in my blog: [neveroff.dev/blog/ipmi-control-in-apple-home/](neveroff.dev/blog/ipmi-control-in-apple-home/)
 
 ### Docker Compose
 
