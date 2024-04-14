@@ -21,7 +21,7 @@ class IpmiController
         'fan' => 'RPM'
     ];
     private array $debug = [];
-    const COMMAND_TIMEOUT = 50;
+    const COMMAND_TIMEOUT = 600;
     const DEFAULT_PORT = 623;
     const DEFAULT_USERNAME = 'ADMIN';
 

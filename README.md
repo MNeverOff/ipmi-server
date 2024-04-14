@@ -20,7 +20,7 @@ It was initially inspired by the [home-assistant-ipmi](https://github.com/ateodo
 
 ## How to use
 
-You can find full installation guide in my blog: [neveroff.dev/blog/ipmi-control-in-apple-home/](neveroff.dev/blog/ipmi-control-in-apple-home/)
+You can find full installation guide in my blog: [neveroff.dev/blog/ipmi-control-in-apple-home/](https://neveroff.dev/blog/ipmi-control-in-apple-home/)
 
 ### Docker Compose
 
@@ -60,6 +60,21 @@ To integrate it with HomeAssistant you can use [home-assistant-ipmi](https://git
 
 If you want to build this container yourself feel free to use the snippet below, replace the -tag definitions as you please. For buildx reference look [here](https://www.docker.com/blog/multi-arch-build-and-images-the-simple-way/).
 
+```bash
+docker buildx build \
+  --platform linux/amd64 \
+  --build-arg BUILD_ARCH=amd64 \
+  --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') \
+  --build-arg BUILD_REF=$(git rev-parse --short HEAD) \
+  --build-arg BUILD_VERSION=1.0.0 \
+  --build-arg BUILD_REPOSITORY="mneveroff/ipmi-server" \
+  --tag mneveroff/ipmi-server:latest \
+  --tag mneveroff/ipmi-server:1.0.0 \
+  --load .
+```
+
+Or to build and push:
+
 ``` bash
 docker buildx build \
   --push \
@@ -92,4 +107,4 @@ To ensure that you can build for multiplatform you need to enable `docker buildx
 
 Replace the repository, and `<name>`:`<version>` respectively
 
-The resulting docker container can to be used with `-p 9595:80` if you want to quickly test it against `localhost:9595`
+The resulting docker container can to be used with `-p 9595:80` if you want to quickly test it against `localhost:9595` via `docker run -p 9595:80 mneveroff/ipmi-server:latest`
