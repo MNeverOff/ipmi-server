@@ -183,7 +183,7 @@ class IpmiController
                         $results = explode(PHP_EOL, $ret);
                         $device = $this->extractValuesFromResults($results);
 
-                        $ret = $this->runCommand(array_merge($cmd, ['-I', $ipmi_type, 'fru']));
+                        $ret = $this->runCommand(array_merge($cmd, ['-I', $ipmi_type, 'fru', 'print', '0']));
 
                         if ($ret) {
                             $results = explode(PHP_EOL, $ret);
